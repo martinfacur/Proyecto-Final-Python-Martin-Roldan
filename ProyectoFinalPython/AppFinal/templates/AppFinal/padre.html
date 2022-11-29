@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        {% load static %}
+       
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>PlayMartín Store</title>
+        <link rel="shortcut icon" type="image/x-icon" href="/media/favicon.ico" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'AppFinal/css/styles.css' %}" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Responsive navbar-->
+        
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand"  style= "color: #020202" href="{% url 'Index' %}">PlayMartín Store</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
+                    <span class="navbar-toggler-icon"  ></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0" >
+                        
+                        <li class="nav-item" ><a class="nav-link active" style= "color: #020202" aria-current="page" href="{% url 'Index' %}">Home</a></li>
+                        <li class="nav-item" ><a class="nav-link" style= "color: #020202" href="{% url 'Busqueda' %}"}>Busqueda</a></li>
+                        <li class="nav-item" ><a class="nav-link" style= "color: #020202" href="{% url 'Productos' %}"}>Productos</a></li>
+                        <li class="nav-item" ><a class="nav-link" style= "color: #020202"href="{% url 'Registrarse' %}">Registrarse</a></li>
+                        <li class="nav-item" ><a class="nav-link" style= "color: #020202" href="{% url 'IniciarSesion' %}">Iniciar Sesion</a></li>
+                        <li class="nav-item" ><a class="nav-link" style= "color: #020202" href="{% url 'Reseñas' %}"}>Reseñas</a></li>
+                        <li class="nav-item" ><a class="nav-link" style= "color: #020202" href="{% url 'Nosotros' %}">Nosotros</a></li>
+                        {% if request.user.is_authenticated %}
+                            <li class="nav-item"><a class="nav-link"  style= "color: #020202" href="{% url 'Perfil' user.id %}"}>Perfil</a></li>
+                            <li class="nav-item"><a class="nav-link"  style= "color: #020202" href="{% url 'CerrarSesion' %}"}>Cerrar Sesion</a></li>
+                            
+                            {% if request.user.client.rol == 'owner' %}
+                                <li class="nav-item" ><a class="nav-link" style= "color: #020202" href="{% url 'Productos' %}"}>Administrar Productos</a></li>
+                            {% else %}
+                                <li class="nav-item"><a class="nav-link" style= "color: #020202"  href="{% url 'WishList' %}"}>WishList</a></li>
+                                
+                    
+                            {% endif %}
+
+                        {% endif %}
+                    </ul>
+ 
+                </div>
+            </div>
+        </nav>
+        <!-- Header - set the background image for the header in the line below-->
+        <header class="py-5 bg-image-full" style="background-image: url('https://image.api.playstation.com/pr/bam-art/148/688/5a64adbd-72fc-4ea1-9dbe-0b194a486342.jpg?w=1920&thumb=false')">
+            <div class="text-center my-5">
+                <img class="img-fluid rounded-circle mb-4" src="https://image.api.playstation.com/pr/bam-art/149/066/f49bb13e-3696-4669-b196-35645a7055f3.png?w=440&thumb=false" alt="..." />
+                <img class="img-fluid rounded-circle mb-4" width="444" height="444" src="https://image.api.playstation.com/pr/bam-art/149/066/739a2f75-67e8-43e2-b9c9-df055851b872.png?w=620&thumb=false" alt="..." />
+            </div> 
+        </header>
+        <div class="text-center my-5">
+            <br>
+        </div>
+
+        <!-- Content section-->
+        <div class="d-flex" style="margin-bottom:5rem; justify-content: space-evenly;">
+
+        {% block Contenido %}
+        
+
+
+
+
+        {% endblock %}
+        </div>
+     
+        {% block Contenido2 %}
+
+        {% endblock %}
+        <!-- Footer-->
+        
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; CoderHouse<br>Python Comisión 43765</p></div>
+            <div class="container"><p class="m-0 text-center text-white">&copy; Martín Facundo Roldán </p></div>
+            <div class="container">
+                <div class="row">
+                  <div class="col-lg-1 mx-auto">
+                    <br>
+                    <a class="nav-link" style= "color: #ffffff" href="{% url 'Nosotros' %}">Nosotros</a></li>
+                    <a class="nav-link" style= "color: #ffffff" href="{% url 'Reseñas' %}"}>Reseñas</a></li>
+                </div>
+            </div>
+        </div>        
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        
+    </body>
+</html>
